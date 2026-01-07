@@ -52,7 +52,7 @@ python src/main.py
 - 觀察重點： 試著放著程式跑一段時間（約 5~10 分鐘），你會發現畫面上的生物開始出現紅色或藍色的光環，這代表該族群已經演化出了特定的優勢性狀。
 
 ## 參數調整 (Configuration)
-你可以自由調整 src/constants.py 來改變世界規則：
+您可以自由調整 src/constants.py 來改變世界規則：
 - MUTATION_RATE：調整突變發生的機率。
 - MUTATION_SCALE：調整突變的劇烈程度。
 - MAP_WIDTH / MAP_HEIGHT：調整地圖大小。
