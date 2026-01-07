@@ -1,0 +1,61 @@
+
+GAME_NAME = "Ecosystem simulation"
+
+TILE_IMAGE_PATH = r"images/asset/tilesheet.png"
+SHEEP_IMAGE_PATH = r"images/asset/sheep.png"
+WOLF_IMAGE_PATH = r"images/asset/wolf.png"
+GRASS_IMAGE_PATH = r"images/asset/grass.png"
+
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
+
+BACKGROUND = (255, 255, 255)
+
+FPS = 60
+
+# 移動視窗的速度
+WINDOW_MOVING_SPEED = 20
+
+# 網格的大小
+TILE_SIZE = 32
+
+# 生成的地圖大小
+MAP_WIDTH = 60 * TILE_SIZE
+MAP_HEIGHT = 60 * TILE_SIZE
+
+# Sprite的動畫更新速度
+ANIMATION_FRAME_DURATION = 300
+
+# 每多少幀更新一次世界時間
+TIME_INTERVAL = 4
+
+#　牧草的參數
+GRASS_GROWING_TIME = 10
+GRASS_GROWING_NUM = 3
+GRASS_DIED_TIME = 30
+GRASS_FOOD_AMOUNT = 5
+
+# 默認生物參數
+HUNGER_LEVEL = 100 
+HUNGER_SPEED = 0.04
+MATING_DESIRE_LEVEL = 0
+MATING_DESIRE_SPEED = 0.3
+SPEED = 2
+DETECTION_RANGE = 100
+INTERACTIVE_RANGE = 30
+TOWARD_FOOD_SPEED = 1.5
+FOOD_AMOUNT = 20
+
+
+# 綿羊生物參數
+SHEEP_SPEED = 2.5
+SHEEP_DETECTION_RANGE = 150
+
+# 狼生物參數
+WOLF_SPEED = 4.5
+WOLF_DETECTION_RANGE = 250
+WOLF_TOWARD_FOOD_SPEED = 4.5
+
+# =================================== 新增突變參數 ===================================
+MUTATION_RATE = 0.3  # 突變率
+MUTATION_SCALE = 0.1  # 突變幅度

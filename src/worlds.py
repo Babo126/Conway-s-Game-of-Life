@@ -1,0 +1,65 @@
+from constants import *
+from misc import Timer
+from flocks import GrassFlock, SheepFlock, WolfFlock
+from tilemap import Terrains
+from tools import debug
+
+class World(object):
+    def __init__(self):
+        # 初始建立世界
+        self.init()
+
+    # =================================== 初始化 ===================================
+    def init(self):
+        self.timer = Timer(TIME_INTERVAL)
+        
+        self.terrains = Terrains(MAP_WIDTH // TILE_SIZE, MAP_HEIGHT // TILE_SIZE)
+
+        self.sheep = SheepFlock()
+        self.wolfs = WolfFlock()
+        self.grass = GrassFlock(self.terrains.grassCoords)
+
+    # =================================== 遊戲更新循環 ===================================
+    def update(self):
+        self.timer.update()
+        
+        # 更新生物群體狀態
+        self.sheep.update(self.grass.flock, self.wolfs.flock, self.terrains)
+        self.wolfs.update(self.sheep.flock, self.terrains)
+
+        self.grass.update(self.timer)
+
+        self.updateTimeInterval()
+
+    def updateTimeInterval(self):
+        self.sheep.setTimeInterval(self.timer.timeInterval)
+        self.wolfs.setTimeInterval(self.timer.timeInterval)
+        self.grass.setTimeInterval(self.timer.timeInterval)
+
+    def setTimeInterval(self, timeInterval):
+        self.timer.timeInterval = timeInterval
+
+    # =================================== 繪製邏輯 ===================================
+    def draw(self, screen):
+        self.terrains.draw(screen)
+        self.grass.draw(screen)
+        self.sheep.draw(screen)
+        self.wolfs.draw(screen)
+
+    def drawWorldInfo(self):
+        msg = "===============\n" + \
+              f"World time: {self.timer.time}\n" + \
+              f"Time interval: {self.timer.timeInterval:.0f}\n" + \
+              "===============\n" + \
+              f"Sheep: {len(self.sheep)}\n" + \
+              f"Wolfs: {len(self.wolfs)}\n" + \
+              f"Grass: {len(self.grass)}\n"
+              
+        debug(msg)
+
+    # 視窗捲動
+    def shift(self, dx, dy):
+        self.terrains.shift(dx, dy)
+        self.sheep.shift(dx, dy)
+        self.wolfs.shift(dx, dy)
+        self.grass.shift(dx, dy)
